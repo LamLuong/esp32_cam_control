@@ -419,7 +419,7 @@ static esp_err_t index_handler(httpd_req_t *req){
   </head>
   <body class="noselect" align="center" style="background-color:white">
     <table id="mainTable" style="width:800px;margin:auto;table-layout:fixed" CELLSPACING=10>
-      <tr>")";
+      <tr>)";
 
   page += "<img id='cameraImage' src='http://" + WiFiAddr + ":81/stream' style='width:800px;height:500px'></td>";
   page += R"(</tr> 
@@ -473,11 +473,12 @@ static esp_err_t index_handler(httpd_req_t *req){
       </tr>      
     </table>
     <script>
-    var xhttp = new XMLHttpRequest();
-    function sendButtonInput(arg, key, value) {
+      var xhttp = new XMLHttpRequest();
+      function sendButtonInput(arg, key, value) {
         var data = key + "=" + value;
         xhttp.open('GET', arg +'?' + data, true); xhttp.send() 
-    }
+      }
+    </script>
   </body>    
 </html>
 )";
