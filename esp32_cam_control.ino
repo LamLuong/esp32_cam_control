@@ -8,7 +8,6 @@
 const char* ssid = "**********";   //Enter SSID WIFI Name
 const char* password = "*******";   //Enter WIFI Password
 
-
 #if defined(CAMERA_MODEL_WROVER_KIT)
 #define PWDN_GPIO_NUM    -1
 #define RESET_GPIO_NUM   -1
@@ -60,12 +59,17 @@ extern int gpRf = 13; // Right 2
 extern int gpLed =  4; // Light
 extern String WiFiAddr ="";
 
+const int PWMFreq = 1000; /* 1 KHz */
+const int PWMResolution = 8;
+extern const int PWMLightChannel = 3;
+
 void startCameraServer();
 
 void setup() {
   Serial.begin(115200);
   Serial.setDebugOutput(true);
   Serial.println();
+
 
 
   pinMode(gpLb, OUTPUT); //Left Backward
@@ -79,7 +83,10 @@ void setup() {
   digitalWrite(gpLf, LOW);
   digitalWrite(gpRb, LOW);
   digitalWrite(gpRf, LOW);
-  digitalWrite(gpLed, LOW);
+  //digitalWrite(gpLed, LOW);
+
+  ledcSetup(PWMLightChannel, PWMFreq, PWMResolution);
+  ledcAttachPin(gpLed, PWMLightChannel);
 
   camera_config_t config;
   config.ledc_channel = LEDC_CHANNEL_0;

@@ -11,6 +11,8 @@ extern int gpLf;
 extern int gpRb;
 extern int gpRf;
 extern int gpLed;
+extern const int PWMLightChannel;
+
 extern String WiFiAddr;
 
 void WheelAct(int nLf, int nLb, int nRf, int nRb);
@@ -537,7 +539,9 @@ static esp_err_t ledon2_handler(httpd_req_t *req){
 
     Serial.println("ledon2_handler");
     Serial.println(led_light_val);
-
+    Serial.println(PWMLightChannel);
+    ledcWrite(PWMLightChannel, led_light_val);
+    
     httpd_resp_set_type(req, "text/html");
     return httpd_resp_send(req, "OK", 2);
 }
