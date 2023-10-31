@@ -171,11 +171,11 @@ static esp_err_t stream_handler(httpd_req_t *req){
         last_frame = fr_end;
         frame_time /= 1000;
         uint32_t avg_frame_time = ra_filter_run(&ra_filter, frame_time);
-        Serial.printf("MJPG: %uB %ums (%.1ffps), AVG: %ums (%.1ffps)"
-            ,(uint32_t)(_jpg_buf_len),
-            (uint32_t)frame_time, 1000.0 / (uint32_t)frame_time,
-            avg_frame_time, 1000.0 / avg_frame_time
-        );
+        // Serial.printf("MJPG: %uB %ums (%.1ffps), AVG: %ums (%.1ffps)"
+        //     ,(uint32_t)(_jpg_buf_len),
+        //     (uint32_t)frame_time, 1000.0 / (uint32_t)frame_time,
+        //     avg_frame_time, 1000.0 / avg_frame_time
+        // );
     }
 
     last_frame = 0;
@@ -476,7 +476,7 @@ static esp_err_t index_handler(httpd_req_t *req){
       var xhttp = new XMLHttpRequest();
       function sendButtonInput(arg, key, value) {
         var data = key + "=" + value;
-        xhttp.open('GET', arg +'?' + data, true); xhttp.send() 
+        xhttp.open('GET', arg +'?' + data, true); xhttp.send()
       }
     </script>
   </body>    
