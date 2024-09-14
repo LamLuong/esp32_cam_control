@@ -5,8 +5,8 @@
 //#define CAMERA_MODEL_M5STACK_PSRAM
 #define CAMERA_MODEL_AI_THINKER
 
-const char* ssid = "**********";   //Enter SSID WIFI Name
-const char* password = "*******";   //Enter WIFI Password
+const char* ssid = "Rừng Dứa";   //Enter SSID WIFI Name
+const char* password = "hihihahahuhu";   //Enter WIFI Password
 
 #if defined(CAMERA_MODEL_WROVER_KIT)
 #define PWDN_GPIO_NUM    -1
@@ -59,7 +59,7 @@ extern int gpRf = 13; // Right 2
 extern int gpLed =  4; // Light
 extern String WiFiAddr ="";
 
-const int PWMFreq = 1000; /* 1 KHz */
+const int PWMFreq = 5000; /* 5 KHz */
 const int PWMResolution = 8;
 extern const int PWMLightChannel = 3;
 
@@ -85,8 +85,8 @@ void setup() {
   digitalWrite(gpRf, LOW);
   //digitalWrite(gpLed, LOW);
 
-  ledcSetup(PWMLightChannel, PWMFreq, PWMResolution);
-  ledcAttachPin(gpLed, PWMLightChannel);
+  // ledcSetup(PWMLightChannel, PWMFreq, PWMResolution);
+  ledcAttach(gpLed, PWMFreq, PWMResolution);
 
   camera_config_t config;
   config.ledc_channel = LEDC_CHANNEL_0;

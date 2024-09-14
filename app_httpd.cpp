@@ -427,17 +427,17 @@ static esp_err_t index_handler(httpd_req_t *req){
   page += R"(</tr> 
       <tr>
         <td></td>
-        <td class="button"><span class="arrows" >&#8679;</span></td>
+        <td class="button" onmousedown='sendButtonInput("go","input", 2)' onmouseup='sendButtonInput("stop","input", 2)'><span class="arrows" >&#8679;</span></td>
         <td></td>
       </tr>
       <tr>
-        <td class="button" ><span class="arrows" >&#8678;</span></td>
+        <td class="button" onmousedown='sendButtonInput("left","input", 2)' onmouseup='sendButtonInput("stop","input", 2)'><span class="arrows" >&#8678;</span></td>
         <td class="button"></td>    
-        <td class="button" ><span class="arrows" >&#8680;</span></td>
+        <td class="button" onmousedown='sendButtonInput("right","input", 2)' onmouseup='sendButtonInput("stop","input", 2)'><span class="arrows" >&#8680;</span></td>
       </tr>
       <tr>
         <td></td>
-        <td class="button" ><span class="arrows" >&#8681;</span></td>
+        <td class="button" onmousedown='sendButtonInput("back","input", 2)' onmouseup='sendButtonInput("stop","input", 2)'><span class="arrows" >&#8681;</span></td>
         <td></td>
       </tr>
       <tr/><tr/>
@@ -539,8 +539,7 @@ static esp_err_t ledon2_handler(httpd_req_t *req){
 
     Serial.println("ledon2_handler");
     Serial.println(led_light_val);
-    Serial.println(PWMLightChannel);
-    ledcWrite(PWMLightChannel, led_light_val);
+    ledcWrite(gpLed, led_light_val);
     
     httpd_resp_set_type(req, "text/html");
     return httpd_resp_send(req, "OK", 2);
